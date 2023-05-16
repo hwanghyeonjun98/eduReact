@@ -1,6 +1,9 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
+import {DiaryDispatchContext} from "./App";
 
-const DiaryItem = ({author, content, create_date, emotion, id, onRemove, onEdit}) => {
+const DiaryItem = ({author, content, create_date, emotion, id}) => {
+  const {onRemove, onEdit} = useContext(DiaryDispatchContext);
+
   const [isEdit, setIsEdit] = useState(false);
   const toggleIsEdit = () => setIsEdit(!isEdit);
 
@@ -34,7 +37,7 @@ const DiaryItem = ({author, content, create_date, emotion, id, onRemove, onEdit}
     <div className="DiaryItem">
       <div className="info">
         <span>
-          작성자 : {author} | 감정점수 {emotion}
+          작성자 : {author} | 감정점수 : {emotion}
         </span>
         <br />
         <span className="date">{new Date(create_date).toLocaleDateString()}</span>
